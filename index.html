@@ -1,0 +1,114 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Una aventura para Sarahi ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/inicio.css">
+</head>
+
+<body>
+
+  <main id="experiencia">
+
+    <section class="escena activa" id="inicio">
+
+      <!-- VIDEO DE FONDO -->
+      <video
+        id="video-fondo"
+        class="video-fondo"
+        playsinline
+        loop
+        preload="metadata"
+      >
+        <source src="assets/videos/intro.mp4" type="video/mp4">
+      </video>
+
+      <!-- CAPA OSCURA -->
+      <div class="capa-video" aria-hidden="true"></div>
+
+      <!-- BOTÓN DE INICIO -->
+      <div class="pantalla-arranque" id="pantalla-arranque">
+
+        <button
+          type="button"
+          class="boton-carrera boton-arranque"
+          id="btn-arrancar"
+        >
+          ARRANCAR MOTORES 🏎️
+        </button>
+
+      </div>
+
+      <!-- MENSAJES DE BIENVENIDA -->
+      <div
+        class="contenido contenido-inicio oculto"
+        id="contenido-bienvenida"
+      >
+
+        <div class="secuencia-mensajes">
+
+          <span class="etiqueta animar-texto">
+            RUTA 95 • UNA AVENTURA ESPECIAL
+          </span>
+
+          <h1 class="titulo animar-texto">
+            ¡HOLA, <span>SARAHI!</span>
+          </h1>
+
+          <p class="descripcion animar-texto">
+            Como no soy muy bueno expresando lo que siento,
+            decidi hacerlo como mejor se hacerlo.
+          </p>
+
+          <p class="descripcion secundaria animar-texto">
+            Preparé esto especialmente para ti,
+            espero que te guste... ❤️
+          </p>
+
+        </div>
+
+        <!-- BOTÓN PARA LA ESCENA 2 -->
+        <a
+          href="periodico.html"
+          class="boton-carrera enlace-continuar"
+          id="btn-continuar"
+        >
+          SIGUIENTE PARADA ➜
+        </a>
+
+      </div>
+
+      <!-- CONTROL DE SONIDO -->
+      <button
+        type="button"
+        class="boton-sonido oculto"
+        id="btn-sonido"
+        aria-pressed="true"
+      >
+        🔊 SILENCIAR
+      </button>
+
+    </section>
+
+  </main>
+
+  <div class="franja-cuadros" aria-hidden="true"></div>
+
+  <script src="js/inicio.js"></script>
+
+</body>
+</html>

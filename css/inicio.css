@@ -1,0 +1,392 @@
+
+
+
+/* ======================================
+   ESCENA 1 - CARS
+   UNA AVENTURA PARA SARAHI
+====================================== */
+
+#inicio {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 100svh;
+}
+
+/* ======================================
+   VIDEO DE FONDO
+====================================== */
+
+.video-fondo {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  z-index: -2;
+}
+
+.capa-video {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.42);
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ======================================
+   PANTALLA DE ARRANQUE
+====================================== */
+
+.pantalla-arranque {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.boton-arranque {
+  margin: 0;
+  padding: 22px 45px;
+
+  font-family: "Racing Sans One", sans-serif;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+
+  cursor: pointer;
+
+  animation: pulsoBoton 2s ease-in-out infinite;
+}
+
+@keyframes pulsoBoton {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+/* ======================================
+   CONTENIDO DE BIENVENIDA
+====================================== */
+
+.contenido-inicio {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: min(100%, 1000px);
+  min-height: 100svh;
+
+  padding: 30px 20px;
+
+  text-align: center;
+}
+
+/* ======================================
+   MENSAJES EN EL MISMO LUGAR
+====================================== */
+
+.secuencia-mensajes {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 320px;
+}
+
+.secuencia-mensajes .animar-texto {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: min(100%, 850px);
+  margin: 0;
+
+  opacity: 0;
+
+  transform: translate(-50%, calc(-50% + 35px));
+
+  /* CADA MENSAJE DURA 8 SEGUNDOS */
+  animation: textoCinematografico 8s ease-in-out both;
+}
+
+/* ======================================
+   TIEMPOS DE CADA MENSAJE
+====================================== */
+
+/* PRIMER MENSAJE */
+.secuencia-mensajes .animar-texto:nth-child(1) {
+  animation-delay: 0.4s;
+}
+
+/* SEGUNDO MENSAJE */
+.secuencia-mensajes .animar-texto:nth-child(2) {
+  animation-delay: 8.4s;
+}
+
+/* TERCER MENSAJE */
+.secuencia-mensajes .animar-texto:nth-child(3) {
+  animation-delay: 16.4s;
+}
+
+/* CUARTO MENSAJE */
+.secuencia-mensajes .animar-texto:nth-child(4) {
+  animation-delay: 24.4s;
+}
+
+/* ======================================
+   ANIMACIÓN DE LOS TEXTOS
+====================================== */
+
+@keyframes textoCinematografico {
+
+  /* EMPIEZA INVISIBLE */
+  0% {
+    opacity: 0;
+    transform: translate(
+      -50%,
+      calc(-50% + 35px)
+    );
+  }
+
+  /* APARECE SUAVEMENTE */
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  /* PERMANECE VISIBLE MÁS TIEMPO */
+  85% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  /* DESAPARECE HACIA ARRIBA */
+  100% {
+    opacity: 0;
+    transform: translate(
+      -50%,
+      calc(-50% - 45px)
+    );
+  }
+}
+
+/* ======================================
+   ESTILO DE LOS MENSAJES
+====================================== */
+
+.secuencia-mensajes .etiqueta {
+  color: #ffe5a5;
+
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+
+  font-weight: 800;
+  letter-spacing: 4px;
+
+  text-shadow: 0 3px 15px #000;
+}
+
+.secuencia-mensajes .titulo {
+  color: white;
+
+  font-family: "Racing Sans One", sans-serif;
+  font-size: clamp(2.7rem, 8vw, 6rem);
+
+  line-height: 1.1;
+
+  text-shadow: 0 5px 20px #000;
+}
+
+.secuencia-mensajes .titulo span {
+  color: #ffca45;
+}
+
+.secuencia-mensajes .descripcion {
+  color: white;
+
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+
+  font-weight: 700;
+  line-height: 1.4;
+
+  text-shadow: 0 3px 15px #000;
+}
+
+.secuencia-mensajes .secundaria {
+  color: #ffe6c6;
+}
+
+/* ======================================
+   BOTÓN SIGUIENTE PARADA
+====================================== */
+
+.enlace-continuar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  margin: 0;
+
+  text-decoration: none;
+  text-align: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translate(-50%, -50%) scale(.9);
+
+  animation: aparecerContinuar 1.5s ease forwards;
+
+  /* APARECE DESPUÉS DE LOS 4 MENSAJES */
+  animation-delay: 32.5s;
+}
+
+@keyframes aparecerContinuar {
+
+  from {
+    opacity: 0;
+    visibility: visible;
+    transform: translate(-50%, -40%) scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ======================================
+   BOTÓN DE SONIDO
+====================================== */
+
+.boton-sonido {
+  position: absolute;
+  right: 20px;
+  bottom: 35px;
+  z-index: 10;
+
+  padding: 12px 20px;
+
+  border: 2px solid #ffe59b;
+  border-radius: 30px;
+
+  background: rgba(30, 20, 20, .75);
+  color: white;
+
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: background .2s;
+}
+
+.boton-sonido:hover {
+  background: rgba(80, 45, 30, .9);
+}
+
+/* ======================================
+   OCULTAR ELEMENTOS
+====================================== */
+
+.oculto {
+  display: none !important;
+}
+
+/* ======================================
+   RESPONSIVE PARA CELULARES
+====================================== */
+
+@media (max-width: 600px) {
+
+  .boton-arranque {
+    padding: 18px 25px;
+    font-size: 1.3rem;
+  }
+
+  .contenido-inicio {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .secuencia-mensajes {
+    min-height: 280px;
+  }
+
+  .secuencia-mensajes .etiqueta {
+    letter-spacing: 2px;
+  }
+
+  .secuencia-mensajes .descripcion {
+    font-size: 1.6rem;
+  }
+
+  .enlace-continuar {
+    width: max-content;
+    max-width: 90%;
+  }
+
+  .boton-sonido {
+    right: 10px;
+    bottom: 25px;
+    padding: 10px 15px;
+    font-size: .9rem;
+  }
+}
+
+/* ======================================
+   ACCESIBILIDAD
+====================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .boton-arranque {
+    animation: none;
+  }
+
+  .secuencia-mensajes .animar-texto {
+    animation: none;
+    opacity: 0;
+  }
+
+  .secuencia-mensajes .animar-texto:last-child {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .enlace-continuar {
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+    top: 75%;
+  }
+}

@@ -1,0 +1,831 @@
+
+
+
+:root {
+  --rojo: #e52629;
+  --rojo-oscuro: #98141a;
+  --amarillo: #ffcc35;
+  --crema: #fff2d6;
+  --oscuro: #321b1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Barlow Condensed", sans-serif;
+  color: white;
+  background: #4c251f;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* FONDO GENERAL */
+
+#experiencia {
+  position: relative;
+  min-height: 100svh;
+
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(29, 15, 24, 0.30),
+      rgba(29, 15, 24, 0.62)
+    ),
+    url("../assets/fondos/carretera.png"),
+    linear-gradient(
+      180deg,
+      #324769 0%,
+      #d97453 48%,
+      #f9b66d 75%,
+      #763d2e 100%
+    );
+
+  background-size: cover, cover, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ESCENAS */
+
+.escena {
+  display: none;
+  min-height: 100svh;
+  padding: 60px 20px 85px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.escena.activa {
+  display: flex;
+  animation: entrada 0.9s ease both;
+}
+
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CONTENIDO SIN TARJETAS */
+
+.contenido {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 850px);
+  margin: auto;
+}
+
+/* ETIQUETAS */
+
+.etiqueta {
+  display: inline-block;
+  padding: 9px 18px;
+  border: 2px solid var(--amarillo);
+  border-radius: 30px;
+  color: var(--amarillo);
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 5px #0008;
+}
+
+/* TITULOS */
+
+.titulo {
+  margin: 25px 0;
+  font-family: "Racing Sans One", sans-serif;
+  font-size: clamp(3.5rem, 10vw, 7.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: var(--crema);
+
+  -webkit-text-stroke: 2px #74211d;
+
+  text-shadow:
+    3px 3px 0 #a72324,
+    6px 6px 0 #661b1d,
+    10px 12px 20px #0008;
+}
+
+.titulo span {
+  display: block;
+  color: var(--amarillo);
+  -webkit-text-stroke: 2px #8d211c;
+}
+
+.titulo.mediano {
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+}
+
+/* DESCRIPCIONES */
+
+.descripcion {
+  max-width: 660px;
+  margin: 20px auto;
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.5;
+
+  color: white;
+
+  text-shadow:
+    0 2px 5px #000,
+    0 4px 15px #000a;
+}
+
+.descripcion.secundaria {
+  color: #ffe3a8;
+}
+
+/* BOTONES */
+
+.boton-carrera {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  margin-top: 25px;
+  padding: 17px 34px;
+
+  border: 3px solid #ffe59b;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    180deg,
+    #ff5252,
+    var(--rojo) 55%,
+    var(--rojo-oscuro)
+  );
+
+  color: white;
+  font-family: "Racing Sans One", sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 7px 0 #65151a,
+    0 15px 30px #0007,
+    inset 0 2px 0 #ffffff75;
+
+  transition: transform .2s, box-shadow .2s;
+}
+
+.boton-carrera:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 11px 0 #65151a,
+    0 19px 35px #0008;
+}
+
+.boton-carrera:active {
+  transform: translateY(4px);
+  box-shadow: 0 3px 0 #65151a;
+}
+
+.boton-carrera.alternativo {
+  background: linear-gradient(#fff5df, #e5cba3);
+  color: #6b2928;
+  border-color: #fff;
+  box-shadow: 0 7px 0 #9c7d61, 0 15px 30px #0005;
+}
+
+
+
+#mensajes {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+}
+
+.mensaje {
+  display: none;
+  max-width: 700px;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.4;
+
+  color: #fff7e7;
+
+  text-shadow:
+    0 3px 4px #000,
+    0 6px 20px #000a;
+}
+
+.mensaje.activo {
+  display: block;
+  animation: entrada .7s ease;
+}
+
+.oculto {
+  display: none !important;
+}
+
+/* PREGUNTA FINAL */
+
+.pregunta {
+  margin: 35px auto 10px;
+  font-family: "Racing Sans One", sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.2;
+  color: #fff5dc;
+
+  text-shadow:
+    3px 3px 0 #a51f28,
+    6px 6px 0 #681a20,
+    0 10px 25px #0008;
+}
+
+.botones-final {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+#respuesta {
+  min-height: 55px;
+  margin-top: 30px;
+  font-family: "Racing Sans One", sans-serif;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  color: #ffe5a4;
+  text-shadow: 0 3px 10px #000b;
+}
+
+/* BANDERA A CUADROS */
+
+.franja-cuadros {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  z-index: 10;
+  pointer-events: none;
+
+  background-color: #fff;
+
+  background-image:
+    linear-gradient(
+      45deg,
+      #151515 25%,
+      transparent 25%,
+      transparent 75%,
+      #151515 75%
+    ),
+    linear-gradient(
+      45deg,
+      #151515 25%,
+      transparent 25%,
+      transparent 75%,
+      #151515 75%
+    );
+
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+  .escena {
+    padding: 40px 16px 65px;
+  }
+
+  .etiqueta {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .titulo {
+    -webkit-text-stroke: 1px #74211d;
+  }
+
+  .boton-carrera {
+    width: 100%;
+    max-width: 340px;
+    font-size: 1.05rem;
+  }
+
+  .botones-final {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ========================================
+   ESCENA 2 - TÍTULO Y PERIÓDICO
+======================================== */
+
+#historia {
+  padding: 40px 20px 65px;
+}
+
+#historia .contenido {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#historia .titulo {
+  margin: 18px 0 25px;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1.05;
+}
+
+/* Imagen del periódico */
+.imagen-periodico {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  max-height: 65vh;
+  object-fit: contain;
+
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+
+  animation: entradaPeriodico 1s ease both;
+}
+
+@keyframes entradaPeriodico {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Botón debajo del periódico */
+#historia #btn-continuar {
+  margin-top: 22px;
+}
+
+/* Ajustes para celular */
+@media (max-width: 600px) {
+  #historia {
+    padding: 30px 12px 55px;
+  }
+
+  #historia .titulo {
+    font-size: clamp(1.8rem, 7vw, 2.7rem);
+  }
+
+  .imagen-periodico {
+    max-height: 55vh;
+  }
+}
+
+/* ============================================
+   THE DAILY EXHAUST - EDICIÓN ROMÁNTICA
+============================================ */
+
+#historia {
+  padding: 32px 16px 75px;
+}
+
+.contenido-historia {
+  width: min(100%, 1120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#historia .titulo {
+  font-size: clamp(2rem, 5vw, 4.3rem);
+  margin: 16px 0;
+}
+
+.instruccion-periodico {
+  color: #fff4d5;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-shadow: 0 3px 12px #000;
+}
+
+.periodico-cars {
+  width: min(100%, 1050px);
+  margin: 15px auto;
+  perspective: 1800px;
+  color: #322418;
+}
+
+/* Textura de papel */
+.portada-cars,
+.pagina-cars {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 3px,
+      rgba(85, 55, 25, .025) 3px 4px
+    ),
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255,255,255,.45),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #f4e2b9, #d9b788);
+  border: 1px solid #947047;
+  box-shadow:
+    inset 0 0 35px #8c5e2b26,
+    8px 14px 35px #0008;
+}
+
+/* PORTADA CERRADA */
+
+.portada-cars {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: min(100%, 560px);
+  margin: auto;
+  padding: 24px;
+  color: #322418;
+  text-align: center;
+  cursor: pointer;
+  transform-origin: left center;
+  transition: transform .5s ease;
+}
+
+.portada-cars:hover {
+  transform: rotate(-1.5deg) translateY(-5px);
+}
+
+.bandera-superior {
+  height: 14px;
+  background: conic-gradient(
+    #2c241c 25%, #f3dfb5 0 50%,
+    #2c241c 0 75%, #f3dfb5 0
+  ) 0 0 / 24px 24px;
+}
+
+.cabecera-cars,
+.cabecera-interior {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: .75rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.nombre-diario {
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  border-top: 4px double #322418;
+  border-bottom: 4px double #322418;
+  padding: 12px 0;
+}
+
+.subtitulo-diario {
+  font-family: Georgia, serif;
+  font-size: .85rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.regla-diario {
+  height: 4px;
+  border-top: 2px solid #322418;
+  border-bottom: 1px solid #322418;
+}
+
+.titular-cars {
+  font-family: Georgia, serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.bajada-cars {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+/* Ilustración de carretera en portada */
+
+.ilustracion-cars {
+  position: relative;
+  display: block;
+  height: 150px;
+  overflow: hidden;
+  background: linear-gradient(
+    #cf7355 0%,
+    #f5b46e 65%,
+    #9b5840 66%,
+    #794a39 100%
+  );
+  border: 4px solid #6c4c32;
+}
+
+.sol-cars {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  right: 18%;
+  top: 15px;
+  border-radius: 50%;
+  background: #ffdb8b;
+  box-shadow: 0 0 30px #ffdf96;
+}
+
+.montana-cars {
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #9d4936;
+  clip-path: polygon(
+    0 100%, 0 65%, 15% 20%, 28% 65%,
+    45% 10%, 60% 70%, 80% 20%,
+    100% 70%, 100% 100%
+  );
+}
+
+.carretera-cars {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  width: 40%;
+  height: 55%;
+  background: #4a3933;
+  clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%);
+}
+
+.coche-cars {
+  position: absolute;
+  bottom: 5px;
+  left: 45%;
+  font-size: 50px;
+  filter: sepia(.35);
+}
+
+.pie-portada {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #6c4c32;
+  padding-top: 8px;
+  font-size: .75rem;
+  font-weight: 900;
+}
+
+.abrir-indicacion {
+  padding: 12px;
+  color: #8f3228;
+  font-size: .9rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  animation: brilloIndicacion 1.5s ease infinite;
+}
+
+@keyframes brilloIndicacion {
+  50% { opacity: .5; }
+}
+
+/* INTERIOR DE DOS PÁGINAS */
+
+.interior-cars {
+  display: none;
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  transform-origin: center;
+}
+
+.pagina-cars {
+  min-width: 0;
+  padding: clamp(20px, 3vw, 38px);
+  text-align: left;
+  font-family: Georgia, serif;
+  line-height: 1.6;
+}
+
+.pagina-izquierda {
+  border-right: 2px solid #947047;
+  transform-origin: right center;
+}
+
+.pagina-derecha {
+  border-left: 2px solid #947047;
+  transform-origin: left center;
+}
+
+.seccion-noticia {
+  display: block;
+  margin-top: 20px;
+  color: #923b2e;
+  font-size: .8rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.pagina-cars h3 {
+  margin: 10px 0;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.entradilla {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.ilustracion-interior {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  min-height: 130px;
+  margin: 20px 0;
+  border: 3px double #947047;
+  background: #d8b68a;
+}
+
+.sello-ruta {
+  padding: 10px 20px;
+  border: 3px solid #5b4530;
+  border-radius: 10px 10px 25px 25px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.sello-ruta strong {
+  font-size: 42px;
+}
+
+.icono-gym,
+.icono-corazon {
+  font-size: 35px;
+}
+
+.texto-noticia,
+.carta-cars {
+  font-size: 1rem;
+}
+
+.texto-noticia p,
+.carta-cars p {
+  margin: 0 0 17px;
+}
+
+.saludo-carta,
+.firma-carta {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.firma-carta {
+  margin-top: 25px !important;
+}
+
+.pie-pagina {
+  margin-top: 25px;
+  padding-top: 10px;
+  border-top: 2px solid #6c4c32;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* APERTURA 3D */
+
+.periodico-cars.abierto .portada-cars {
+  display: none;
+}
+
+.periodico-cars.abierto .interior-cars {
+  display: grid;
+}
+
+.periodico-cars.abierto .pagina-izquierda {
+  animation: desplegarIzquierda 1s ease both;
+}
+
+.periodico-cars.abierto .pagina-derecha {
+  animation: desplegarDerecha 1s ease both;
+}
+
+@keyframes desplegarIzquierda {
+  from {
+    opacity: 0;
+    transform: rotateY(75deg) scale(.92);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0) scale(1);
+  }
+}
+
+@keyframes desplegarDerecha {
+  from {
+    opacity: 0;
+    transform: rotateY(-75deg) scale(.92);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0) scale(1);
+  }
+}
+
+/* BOTONES */
+
+.acciones-periodico {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.cerrar-cars {
+  padding: 12px 22px;
+  border: 2px solid #f4dbad;
+  border-radius: 10px;
+  background: #53392e;
+  color: #fff1d5;
+  font-family: "Racing Sans One", sans-serif;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+  .interior-cars {
+    grid-template-columns: 1fr;
+  }
+
+  .periodico-cars.abierto .interior-cars {
+    display: grid;
+  }
+
+  .pagina-izquierda,
+  .pagina-derecha {
+    border: 1px solid #947047;
+  }
+
+  .portada-cars {
+    padding: 18px;
+  }
+
+  .cabecera-cars,
+  .pie-portada {
+    font-size: .65rem;
+  }
+
+  .texto-noticia,
+  .carta-cars {
+    font-size: .95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .periodico-cars.abierto .pagina-izquierda,
+  .periodico-cars.abierto .pagina-derecha {
+    animation: none;
+  }
+}
